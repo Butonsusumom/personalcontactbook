@@ -186,9 +186,7 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
-                    </execution>
-                </executions>
-                <configuration>
+                                        <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <annotationProcessorPaths>
@@ -204,6 +202,9 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+        
+                    </execution>
+                </executions>
         
             </plugin>
  
