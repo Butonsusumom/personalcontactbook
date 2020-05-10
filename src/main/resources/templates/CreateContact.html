@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+
+
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+
+    <!-- Styles -->
+    <title th:text="${titleUpdateContact}">Create contact</title>
+    <link rel="stylesheet" th:href="@{css/main1.css}">
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/normalize.css}" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body link="white" vlink="white" alink="white">
+<!-- Landing section -->
+<section class="landing">
+    <header>
+        <div class="title"></div>
+        <ul>
+            <li> <div align="right">
+                <form  th:action="'/logout'" method="post">
+                    <button type="submit" id="logout" >
+                        <span class="glyphicon glyphicon-log-out"></span> Logout
+                    </button>
+                </form>
+            </div>
+            </li>
+        </ul>
+    </header>
+
+    <div class="landing-main">
+
+        <div class="container">
+            <h2 th:text="${userLogin}" style="font-weight:bold"></h2><h2 style="font-weight:bold"> Contact book</h2>
+            <p></p>
+            <form id="createcont" class="form-inline" th:action="'/updatecontact'" method="post" style="	background:transparent;border: 0px;color:black;">
+                <div class="form-group">
+                    <label for="lastName">Last name:</label>
+                    <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="lastName" name="lastName" th:value="${lastName}" placeholder="Enter last name"/>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="name" name="name" th:value="${name}" placeholder="Enter name"/>
+                </div>
+                <div class="form-group">
+                    <label for="middleName">Middle name:</label>
+                    <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="middleName" name="middleName" th:value="${middleName}" placeholder="Enter middle name"/>
+                </div>
+                <div class="form-group">
+                    <label for="mobilePhone">Mobile phone:</label>
+                    <input style="	background:rgba(255, 255, 255, 0.7);" type="tel" class="form-control" id="mobilePhone" name="mobilePhone" th:value="${mobilePhone}" placeholder="+375001234567"/>
+                </div>
+                <div class="form-group">
+                    <label for="homePhone">Home phone:</label>
+                    <input style="	background:rgba(255, 255, 255, 0.7);" type="tel" class="form-control" id="homePhone" name="homePhone" th:value="${homePhone}" placeholder="+375001234567"/>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="address" name="address" th:value="${address}" placeholder="Enter address"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input style="	background:rgba(255, 255, 255, 0.7);"type="email" class="form-control" id="email" name="email" th:value="${email}" placeholder="Enter email"/>
+                </div>
+
+                <input type="hidden" name="idContact" th:value="${idContact}"/>
+                <button style="	background:rgba(0, 0, 0, 0.6);color:white;"  type="submit" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-pencil"></span><span th:text="${titleUpdateContact}">Create</span>
+                </button>
+            </form>
+
+            <th:block th:if="${warningMessage != null}">
+                <div class="alert alert-danger"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong th:text="${warningMessage}">warningMessage</strong></div>
+            </th:block>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <p style="color:black">&#169; 2020 <a href="https://www.instagram.com/orange_list/?hl=ru">KSENIA TSYBULKO</a></p>
+</footer>
+</body>
+</html>

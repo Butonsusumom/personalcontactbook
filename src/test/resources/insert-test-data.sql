@@ -1,0 +1,2 @@
+INSERT INTO phone_book.user VALUES (1, 'Ivanov Petr Fedorovich', 'ivanov', 'd17f25ecfbcc7857f7bebea469308be0b2580943e96d13a3ad98a13675c4bfc2','USER');
+INSERT INTO phone_book.contact VALUES (1, 1, 'Sidorenko', 'Sidor', 'Sidorovich','+380(68)4444444','+380(44)5555555','Naberezhna, 4','s.sidorenko@gmail.com');

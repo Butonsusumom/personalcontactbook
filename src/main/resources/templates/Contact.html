@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+
+
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+
+    <!-- Styles -->
+    <link rel="stylesheet" th:href="@{css/main1.css}">
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/contact.css}">
+    <link rel="stylesheet" th:href="@{css/normalize.css}" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body link="white" vlink="white" alink="white">
+<!-- Landing section -->
+
+    <header>
+        <div class="title"></div>
+        <ul>
+            <li> <div align="right">
+            </div>
+            </li>
+        </ul>
+    </header>
+    <section style="padding-top: 100px; padding-bottom: 90px;" class="about">
+        <div class="about-header">
+            <h1>Send mail</h1>
+        </div>
+        <div class="card">
+            <form action="/mail" method="post" >
+                <input style="display: none;" name="mail" id="mail" type="text" class="feedback-input" placeholder="Emails" th:value="${mail}" required/>
+                <input name="subject" id="subject" type="text" class="feedback-input" placeholder="Subject" th:value="${subject}" required/>
+                <textarea name="message" id="massage" class="feedback-input" placeholder="Message" th:value="${message}" required></textarea>
+                <input type="submit" name="submit" value="SUBMIT" style="    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    width: 100%;
+    background:#1b1c1c;
+    border-radius: 10px;
+    border:0;
+    cursor:pointer;
+    color:white;
+    font-size:24px;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-top:-4px;
+    font-weight:700;"/>
+            </form>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <p style="color:black">&#169; 2020 <a href="https://www.instagram.com/orange_list/?hl=ru">KSENIA TSYBULKO</a></p>
+    </footer>
+
+</body>

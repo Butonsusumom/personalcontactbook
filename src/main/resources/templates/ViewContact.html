@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View contact</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        if (typeof(Storage) !== "undefined") {
+            var ns = performance.timing.navigationStart;
+            if (sessionStorage.getItem("whenloading") == null) {
+                sessionStorage.setItem("whenloading", ns);
+            } else {
+                sessionStorage.removeItem("whenloading");
+//                location.reload(true);
+//                if ((document.getElementById("lastName") != null) || (document.getElementById("name") != null) || (document.getElementById("mobilePhone") != null)) {
+//                    /*[+
+//                     window.location = "'http://' + [[${myipaddress}]] + ':8080/find?iduser=' + [[${idUser}]] + '&idsession=' + [[${idSessionValue}]] + '&lastname=' + document.getElementById('lastName').innerHTML + '&name=' + document.getElementById('name').innerHTML + '&mobilePhone=' + document.getElementById('mobilePhone').innerHTML";
+//                     +]*/
+//                } else {
+//                    /*[+
+//                     window.location = "'http://' + [[${myipaddress}]] + ':8080/view?iduser=' + [[${idUser}]] + '&idsession=' + [[${idSessionValue}]]";
+//                     +]*/
+//                }
+            }
+        }
+
+        function analyzeCheckBox(isDelete) {
+            var ar = document.getElementsByTagName("input");
+            var checks = "";
+            for (var i = 0; i < ar.length; i++) {
+                if ((ar[i].getAttribute("type") == "checkbox") && ar[i].checked) {
+                    checks += ar[i].getAttribute("value") + ',';
+                }
+            }
+            document.getElementById("sendcheckbox").value = checks;
+            if (("" != checks) && (isDelete == "Delete") && confirm("Do you want delete marked contacts?")) {
+                document.getElementById("deleteButton").value = isDelete;
+            }
+        }
+
+        function isChecked() {
+            var ar = document.getElementsByTagName('input');
+            for (var i = 0; i < ar.length; i++) {
+                if ((ar[i].getAttribute('type') == 'checkbox') && ar[i].checked) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function onmouse(x) {
+            x.style.background = "rgb(245, 245, 245)";
+        }
+
+        function outmouse(x) {
+            x.style.background = "white";
+        }
+        /*]]>*/
+    </script>
+</head>
+<body>
+<div class="container">
+    <div align="right">
+        <form class="form-inline" th:action="'http://' + ${myipaddress} + ':8080/logout'" method="post">
+            <label for="logout" th:text="${userLogin}">userLogin</label>
+            <button type="submit" id="logout" class="btn btn-default">
+                <span class="glyphicon glyphicon-log-out"></span> Logout
+            </button>
+            <input type="hidden" name="idsession" th:value="${idSessionValue}"/>
+            <input type="hidden" name="iduser" th:value="${idUser}"/>
+        </form>
+    </div>
+
+    <h2>Phone book</h2>
+    <p></p>
+
+    <div class="well well-sm">
+        <form class="form-inline" th:action="'http://' + ${myipaddress} + ':8080/find'" method="post">
+            <div class="form-group">
+                <label for="lastName">Last name:</label>
+                <input type="text" class="form-control" id="lastName" name="lastname" placeholder="Enter last name"/>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"/>
+            </div>
+            <div class="form-group">
+                <label for="mobilePhone">Mobile phone:</label>
+                <input type="text" class="form-control" id="mobilePhone" name="mobilePhone"
+                       placeholder="Enter mobile phone"/>
+            </div>
+
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span> Find
+            </button>
+            <input type="hidden" name="idsession" th:value="${idSessionValue}"/>
+            <input type="hidden" name="iduser" th:value="${idUser}"/>
+        </form>
+    </div>
+
+
+    <form style="display:inline-block;" th:action="'http://' + ${myipaddress} + ':8080/create?iduser=' + ${idUser}"
+          method="post">
+        <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus"></span> Add contact
+        </button>
+        <input type="hidden" name="idsession" th:value="${idSessionValue}"/>
+    </form>
+    <form style="display:inline-block;" th:action="'http://' + ${myipaddress} + ':8080/edit'"
+          th:onsubmit="'return isChecked();'"
+          method="post">
+        <button type="submit" class="btn btn-default" th:onclick="'analyzeCheckBox(\'\');'">
+            <span class="glyphicon glyphicon-pencil"></span> Edit
+        </button>
+
+        <button type="submit" class="btn btn-default" th:onclick="'javascript:analyzeCheckBox(\'Delete\');'">
+            <span class="glyphicon glyphicon-trash"></span> Delete
+        </button>
+
+        <input type="hidden" name="sendcheckbox" id="sendcheckbox" value=""/>
+        <input type="hidden" name="iduser" th:value="${idUser}"/>
+        <input type="hidden" name="idsession" th:value="${idSessionValue}"/>
+        <input type="hidden" name="delete" id="deleteButton" value=""/>
+    </form>
+
+    <th:block th:if="${warningMessage != null}">
+        <div class="alert alert-danger"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong th:text="${warningMessage}">warningMessage</strong></div>
+    </th:block>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Last name</th>
+            <th>Name</th>
+            <th>Middle name</th>
+            <th>Mobile phone</th>
+            <th>Home phone</th>
+            <th>Address</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact : ${contacts}" onmouseenter="onmouse(this)" onmouseleave="outmouse(this)">
+            <td class="vcenter"><input type="checkbox" th:value="${contact.getId()}"/></td>
+            <td th:text="${contact.getLastName()}">lastName</td>
+            <td th:text="${contact.getName()}">name</td>
+            <td th:text="${contact.getMiddleName()}">middleName</td>
+            <td th:text="${contact.getMobilePhone()}">mobilePhone</td>
+            <td th:text="${contact.getHomePhone()}"></td>
+            <td th:text="${contact.getAddress()}">address</td>
+            <td th:text="${contact.getEmail()}">email</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

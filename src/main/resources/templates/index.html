@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+
+	
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+
+	<!-- Styles -->
+	<link rel="stylesheet" th:href="@{css/main1.css}">
+	<link rel="stylesheet" th:href="@{css/index.css}">
+	<link rel="stylesheet" th:href="@{css/normalize.css}" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script th:inline="javascript">
+
+		function analyzeCheckBox(isDelete) {
+			var ar = document.getElementsByTagName("input");
+			var checks = "";
+			for (var i = 0; i < ar.length; i++) {
+				if ((ar[i].getAttribute("type") == "checkbox") && ar[i].checked) {
+					checks += ar[i].getAttribute("value") + ',';
+				}
+			}
+			checks = checks.substr(0, checks.length - 1);
+			document.getElementById("editcheckbox").value = checks;
+			document.getElementById("emailcheckbox").value = checks;
+			if (("" != checks) && (isDelete == "Delete") && confirm("Do you want delete marked contacts?")) {
+				document.getElementById("deleteButton").value = isDelete;
+				document.getElementById("deletecheckbox").value = checks;
+			}
+		}
+
+		function isChecked() {
+			var ar = document.getElementsByTagName('input');
+			for (var i = 0; i < ar.length; i++) {
+				if ((ar[i].getAttribute('type') == 'checkbox') && ar[i].checked) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		function onmouse(x) {
+			x.style.background = "rgb(245, 245, 245)";
+		}
+
+		function outmouse(x) {
+			x.style.background = "white";
+		}
+		/*]]>*/
+	</script>
+</head>
+<body link="white" vlink="white" alink="white">
+	<!-- Landing section -->
+	<section class="landing">
+		<header>
+			<div class="title"></div>
+			<ul>
+				<li> <div align="right">
+					<form  th:action="'/logout'" method="post">
+						<button type="submit" id="logout" >
+							<span class="glyphicon glyphicon-log-out"></span> Logout
+						</button>
+					</form>
+				</div>
+				</li>
+			</ul>
+		</header>
+
+		<div class="landing-main">
+
+			<div class="container">
+
+
+				<h2 th:text="${userLogin}" style="font-weight:bold"></h2><h2 style="font-weight:bold"> Contact book</h2>
+				<p></p>
+
+				<div class="well well-sm" style="	background:transparent;border: 0px;color:black;">
+					<form  class="form-inline"  th:action="'/find'" method="post">
+						<div class="form-group">
+							<label for="lastName">Last name:</label>
+							<input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="lastName" name="lastname" placeholder="Enter last name"/>
+						</div>
+						<div class="form-group">
+							<label for="name">Name:</label>
+							<input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="name" name="name" placeholder="Enter name"/>
+						</div>
+						<div class="form-group">
+							<label for="mobilePhone">Mobile phone:</label>
+							<input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="mobilePhone" name="mobilePhone"
+								   placeholder="Enter mobile phone"/>
+						</div>
+
+						<button style="	background:rgba(0, 0, 0, 0.6);color:white;" type="submit" class="btn btn-outline-dark" >
+							<span class="glyphicon glyphicon-search"></span> Find
+						</button>
+					</form>
+				</div>
+
+
+				<form style="display:inline-block;	background:transparent;border: 0px; "  th:action="'/create'"
+					  method="post">
+					<button style="	background:rgba(0, 0, 0, 0.6);color:white;" type="submit" class="btn btn-outline-dark">
+						<span class="glyphicon glyphicon-plus"></span> Add contact
+					</button>
+				</form>
+
+				<form style="display:inline-block;	background:transparent;border: 0px; " action="/edit" onsubmit="return isChecked();">
+					<button style="	background:rgba(0, 0, 0, 0.6);color:white;" type="submit" class="btn btn-outline-dark" onclick="analyzeCheckBox(&#39;&#39;);">
+						<span class="glyphicon glyphicon-pencil"></span> Edit
+						
+					</button>
+
+					<input type="hidden" name="editcheckbox" id="editcheckbox" value=""/>
+				</form>
+
+				<form style="display:inline-block;	background-color:transparent;border: 0px; "  method="post" action="/delete" onsubmit="return isChecked();">
+
+					<button style="	background:rgba(0, 0, 0, 0.6);color:white;" type="submit" class="btn btn-outline-dark" onclick="javascript:analyzeCheckBox(&#39;Delete&#39;);">
+						<span class="glyphicon glyphicon-trash"></span> Delete
+					</button>
+
+					<input type="hidden" name="deletecheckbox" id="deletecheckbox" value=""/>
+					<input type="hidden" name="delete" id="deleteButton" value=""/>
+				</form>
+
+				<form style="display:inline-block;	background-color:transparent;border: 0px; " action="/send" method="post" onsubmit="return isChecked();">
+
+					<button style="	background:rgba(0, 0, 0, 0.6);color:white;" type="submit" class="btn btn-outline-dark" onclick="analyzeCheckBox(&#39;&#39;);">
+						<span class="glyphicon glyphicon-envelope"></span> Email
+					</button>
+
+					<input type="hidden" name="emailcheckbox" id="emailcheckbox" value=""/>
+					<input type="hidden" name="email" id="emailButton" value=""/>
+				</form>
+
+
+				<th:block th:if="${warningMessage != null}">
+					<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong th:text="${warningMessage}">warningMessage</strong></div>
+				</th:block>
+
+				<table class="table ">
+					<thead  >
+					<tr>
+						<th></th>
+						<th>Last name</th>
+						<th>Name</th>
+						<th>Middle name</th>
+						<th>Mobile phone</th>
+						<th>Home phone</th>
+						<th>Address</th>
+						<th>Email</th>
+					</tr>
+					</thead>
+					<tbody style="	background:rgba(0, 0, 0, 0.15);border: 0px;color:black;overflow: scroll;">
+					<tr  th:each="contact : ${contacts}" >
+						<td class="vcenter"><input type="checkbox" th:value="${contact.getId()}"/></td>
+						<td th:text="${contact.getLastName()}">lastName</td>
+						<td th:text="${contact.getName()}">name</td>
+						<td th:text="${contact.getMiddleName()}">middleName</td>
+						<td th:text="${contact.getMobilePhone()}">mobilePhone</td>
+						<td th:text="${contact.getHomePhone()}"></td>
+						<td th:text="${contact.getAddress()}">address</td>
+						<td th:text="${contact.getEmail()}">email</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+
+	<footer>
+			<p style="color:black">&#169; 2020 <a href="https://www.instagram.com/orange_list/?hl=ru">KSENIA TSYBULKO</a></p>
+		</footer>
+</body>
+</html>
