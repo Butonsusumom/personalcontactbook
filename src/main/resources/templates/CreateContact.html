@@ -35,44 +35,74 @@
     </header>
 
     <div class="landing-main">
+<div class="container">
 
-        <div class="container">
             <h2 th:text="${userLogin}" style="font-weight:bold"></h2><h2 style="font-weight:bold"> Contact book</h2>
             <p></p>
-            <form id="createcont" class="form-inline" th:action="'/updatecontact'" method="post" style="	background:transparent;border: 0px;color:black;">
-                <div class="form-group">
-                    <label for="lastName">Last name:</label>
-                    <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="lastName" name="lastName" th:value="${lastName}" placeholder="Enter last name"/>
+
+            <form id="createcont"  class="form-horizontal" th:action="'/updatecontact'" method="post" style="	background:transparent;border: 0px;color:black;margin-left: 300px;">
+                <div class="form-group" >
+                    <label class="control-label col-sm-2" for="lastName">Last name:</label>
+                    <div class="col-sm-10">
+                        <div class="col-xs-4">
+                            <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="lastName" name="lastName" th:value="${lastName}" placeholder="Enter last name"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Name:</label>
+                    <label class="control-label col-sm-2" for="name">Name:</label>
+                    <div class="col-sm-10">
+                        <div class="col-xs-4">
                     <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="name" name="name" th:value="${name}" placeholder="Enter name"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="middleName">Middle name:</label>
+                    <label class="control-label col-sm-2" for="middleName">Middle name:</label>
+                    <div class="col-sm-10">
+                        <div class="col-xs-4">
                     <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="middleName" name="middleName" th:value="${middleName}" placeholder="Enter middle name"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="mobilePhone">Mobile phone:</label>
+                    <label class="control-label col-sm-2" for="mobilePhone">Mobile phone:</label>
+                    <div class="col-sm-10">
+                        <div class="col-xs-4">
                     <input style="	background:rgba(255, 255, 255, 0.7);" type="tel" class="form-control" id="mobilePhone" name="mobilePhone" th:value="${mobilePhone}" placeholder="+375001234567"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="homePhone">Home phone:</label>
+                    <label class="control-label col-sm-2" for="homePhone">Home phone:</label>
+                    <div class="col-sm-10">
+                        <div class="col-xs-4">
                     <input style="	background:rgba(255, 255, 255, 0.7);" type="tel" class="form-control" id="homePhone" name="homePhone" th:value="${homePhone}" placeholder="+375001234567"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="address">Address:</label>
+                    <label class="control-label col-sm-2" for="address">Address:</label>
+                    <div class="col-sm-10">
+                        <div class="col-xs-4">
                     <input style="	background:rgba(255, 255, 255, 0.7);" type="text" class="form-control" id="address" name="address" th:value="${address}" placeholder="Enter address"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <div class="col-sm-10">
+                        <div class="col-xs-4">
                     <input style="	background:rgba(255, 255, 255, 0.7);"type="email" class="form-control" id="email" name="email" th:value="${email}" placeholder="Enter email"/>
+                        </div>
+                    </div>
                 </div>
 
                 <input type="hidden" name="idContact" th:value="${idContact}"/>
-                <button style="	background:rgba(0, 0, 0, 0.6);color:white;"  type="submit" class="btn btn-default" >
-                    <span class="glyphicon glyphicon-pencil"></span><span th:text="${titleUpdateContact}">Create</span>
+                <button style="	background:rgba(0, 0, 0, 0.6);color:white;margin-left: 450px;"  type="submit" class="btn btn-default"  >
+                    <span class="glyphicon glyphicon-pencil"></span><span th:text="   ${titleUpdateContact}">Create</span>
                 </button>
+
             </form>
 
             <th:block th:if="${warningMessage != null}">
@@ -82,6 +112,7 @@
         </div>
     </div>
 </section>
+
 
 
 <footer>
