@@ -15,7 +15,6 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.19" />
-          <element id="library" level="project" name="Maven: com.h2database:h2:1.4.193" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.5" />
@@ -76,7 +75,6 @@
           <element id="library" level="project" name="Maven: org.attoparser:attoparser:2.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.unbescape:unbescape:1.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-devtools:2.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:2.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-hateoas:2.2.5.RELEASE" />
@@ -127,6 +125,7 @@
           <element id="library" level="project" name="Maven: com.sun.mail:jakarta.mail:1.6.4" />
           <element id="library" level="project" name="Maven: com.sun.activation:jakarta.activation:1.2.2" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:9.4.1208" />
+          <element id="library" level="project" name="Maven: com.h2database:h2:1.4.193" />
         </element>
       </element>
       <element id="directory" name="META-INF">
