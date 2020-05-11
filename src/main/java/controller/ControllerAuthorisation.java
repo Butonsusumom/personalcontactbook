@@ -63,7 +63,7 @@ public class ControllerAuthorisation {
         model.addAttribute("userLogin", dbUser.getFullName()+"'s");
         model.addAttribute("contacts", contacts);
 
-        return "Index";
+        return "index";
     }
 
 
@@ -213,7 +213,7 @@ public class ControllerAuthorisation {
 
         model.addAttribute("userLogin", dbUser.getFullName()+"'s");
         model.addAttribute("contacts", contacts);
-        return "Index";
+        return "index";
     }
 
     @RequestMapping("/edit")
@@ -270,6 +270,6 @@ public class ControllerAuthorisation {
         });
 
         model.addAttribute("contacts", contacts);
-        return "Index";
+        return "index";
     }
 }
