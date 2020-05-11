@@ -75,7 +75,7 @@ public class ControllerWork {
         });
         model.addAttribute("userLogin", dbUser.getFullName());
         model.addAttribute("contacts", contacts);
-        return "Index";
+        return "index";
     }
 
     @RequestMapping("/create")
