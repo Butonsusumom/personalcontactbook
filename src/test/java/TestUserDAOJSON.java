@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-/**
- * Created by Vadim
- */
+
 public class TestUserDAOJSON {
     @SuppressWarnings("Duplicates")
     @Test

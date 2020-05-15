@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface UserRepository extends CrudRepository<CustomUser, Long> {
-
     List<CustomUser> findAll();
 
     @Query("select u from CustomUser u where u.id = ?1")
@@ -15,7 +14,4 @@ public interface UserRepository extends CrudRepository<CustomUser, Long> {
 
     @Query("select u from CustomUser u where u.login = ?1")
     CustomUser getByLogin(String login);
-
-
-
 }
