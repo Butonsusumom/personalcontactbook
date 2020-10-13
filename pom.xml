@@ -18,7 +18,7 @@
         <spring-security-config.version>4.2.1.RELEASE</spring-security-config.version>
         <h2.version>1.4.193</h2.version>
         <dom4j.version>1.6.1</dom4j.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <parent>
